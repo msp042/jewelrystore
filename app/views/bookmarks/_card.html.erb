@@ -7,12 +7,20 @@
     <dl class="mb-1">
       <dt>Necklace</dt>
       <!-- Display necklace_id start -->
-      <dd><%= bookmark.necklace_id %></dd>
+      <dd>
+        <% if @bookmark.necklace.present? %>
+          <%= link_to bookmark.necklace, bookmark.necklace %>
+        <% end %>
+      </dd>
       <!-- Display necklace_id end -->
 
       <dt>User</dt>
       <!-- Display user_id start -->
-      <dd><%= bookmark.user_id %></dd>
+      <dd>
+        <% if @bookmark.user.present? %>
+          <%= link_to bookmark.user, bookmark.user %>
+        <% end %>
+      </dd>
       <!-- Display user_id end -->
 
     </dl>

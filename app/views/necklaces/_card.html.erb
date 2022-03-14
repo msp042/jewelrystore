@@ -7,7 +7,11 @@
     <dl class="mb-1">
       <dt>Category</dt>
       <!-- Display category_id start -->
-      <dd><%= necklace.category_id %></dd>
+      <dd>
+        <% if @necklace.category.present? %>
+          <%= link_to necklace.category, necklace.category %>
+        <% end %>
+      </dd>
       <!-- Display category_id end -->
 
       <dt>Title</dt>
