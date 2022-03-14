@@ -3,7 +3,7 @@ class NecklacesController < ApplicationController
 
   # GET /necklaces
   def index
-    @necklaces = Necklace.all
+    @necklaces = Necklace.page(params[:page]).per(10)
   end
 
   # GET /necklaces/1
