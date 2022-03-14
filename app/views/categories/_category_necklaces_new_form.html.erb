@@ -1,0 +1,42 @@
+<!-- Form necklace start -->
+<%= form_with(model: @necklace, local: true) do |f| %>
+<!-- Form necklace end -->
+
+  <!-- Label and input for category_id start -->
+  <!-- Input for category_id start -->
+  <%= f.hidden_field :category_id, value: @category.id %>
+  <!-- Input for category_id end -->
+  <!-- Label and input for category_id end -->
+
+  <!-- Label and input for title start -->
+  <div class="form-group">
+    <%= f.label :title %>
+
+    <!-- Input for title start -->
+    <%= f.text_field :title, class: "form-control" %>
+    <!-- Input for title end -->
+  </div>
+  <!-- Label and input for title end -->
+
+  <!-- Label and input for price start -->
+  <div class="form-group">
+    <%= f.label :price %>
+
+    <!-- Input for price start -->
+    <%= f.text_field :price, class: "form-control" %>
+    <!-- Input for price end -->
+  </div>
+  <!-- Label and input for price end -->
+
+  <!-- Label and input for image start -->
+  <div class="form-group">
+    <%= f.label :image %>
+
+    <!-- Input for image start -->
+    <%= f.text_field :image, class: "form-control" %>
+    <!-- Input for image end -->
+  </div>
+  <!-- Label and input for image end -->
+
+  <%= f.submit "Create necklace", class: "btn btn-block btn-outline-secondary" %>
+<% end %>

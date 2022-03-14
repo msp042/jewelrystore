@@ -8,6 +8,7 @@ class NecklacesController < ApplicationController
 
   # GET /necklaces/1
   def show
+    @bookmark = Bookmark.new
   end
 
   # GET /necklaces/new
@@ -24,7 +25,12 @@ class NecklacesController < ApplicationController
     @necklace = Necklace.new(necklace_params)
 
     if @necklace.save
-      redirect_to @necklace, notice: 'Necklace was successfully created.'
+      message = 'Necklace was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @necklace, notice: message
+      end
     else
       render :new
     end
