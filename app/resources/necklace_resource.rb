@@ -9,6 +9,8 @@ class NecklaceResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :category
+
   has_many   :bookmarks
 
   # Indirect associations
