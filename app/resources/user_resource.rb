@@ -8,8 +8,7 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
-  has_many   :bookmarks
+  has_many :bookmarks
 
   # Indirect associations
-
 end

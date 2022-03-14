@@ -13,7 +13,7 @@ class Api::V1::NecklacesController < Api::V1::GraphitiController
     necklace = NecklaceResource.build(params)
 
     if necklace.save
-      render jsonapi: necklace, status: 201
+      render jsonapi: necklace, status: :created
     else
       render jsonapi_errors: necklace
     end
@@ -33,7 +33,7 @@ class Api::V1::NecklacesController < Api::V1::GraphitiController
     necklace = NecklaceResource.find(params)
 
     if necklace.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: necklace
     end

@@ -12,5 +12,4 @@ class BookmarkResource < ApplicationResource
   belongs_to :necklace
 
   # Indirect associations
-
 end

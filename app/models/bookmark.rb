@@ -14,5 +14,4 @@ class Bookmark < ApplicationRecord
   def to_s
     necklace.to_s
   end
-
 end

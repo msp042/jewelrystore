@@ -1,10 +1,11 @@
 class NecklacesController < ApplicationController
-  before_action :set_necklace, only: [:show, :edit, :update, :destroy]
+  before_action :set_necklace, only: %i[show edit update destroy]
 
   # GET /necklaces
   def index
     @q = Necklace.ransack(params[:q])
-    @necklaces = @q.result(:distinct => true).includes(:bookmarks, :category).page(params[:page]).per(10)
+    @necklaces = @q.result(distinct: true).includes(:bookmarks,
+                                                    :category).page(params[:page]).per(10)
   end
 
   # GET /necklaces/1
@@ -18,17 +19,16 @@ class NecklacesController < ApplicationController
   end
 
   # GET /necklaces/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /necklaces
   def create
     @necklace = Necklace.new(necklace_params)
 
     if @necklace.save
-      message = 'Necklace was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Necklace was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @necklace, notice: message
       end
@@ -40,7 +40,7 @@ class NecklacesController < ApplicationController
   # PATCH/PUT /necklaces/1
   def update
     if @necklace.update(necklace_params)
-      redirect_to @necklace, notice: 'Necklace was successfully updated.'
+      redirect_to @necklace, notice: "Necklace was successfully updated."
     else
       render :edit
     end
@@ -50,22 +50,22 @@ class NecklacesController < ApplicationController
   def destroy
     @necklace.destroy
     message = "Necklace was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to necklaces_url, notice: message
     end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_necklace
-      @necklace = Necklace.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def necklace_params
-      params.require(:necklace).permit(:category_id, :title, :price, :image)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_necklace
+    @necklace = Necklace.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def necklace_params
+    params.require(:necklace).permit(:category_id, :title, :price, :image)
+  end
 end

@@ -5,8 +5,7 @@ class CategoryResource < ApplicationResource
 
   # Direct associations
 
-  has_many   :necklaces
+  has_many :necklaces
 
   # Indirect associations
-
 end

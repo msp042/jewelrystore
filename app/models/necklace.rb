@@ -6,7 +6,7 @@ class Necklace < ApplicationRecord
   belongs_to :category
 
   has_many   :bookmarks,
-             :dependent => :destroy
+             dependent: :destroy
 
   # Indirect associations
 
@@ -17,5 +17,4 @@ class Necklace < ApplicationRecord
   def to_s
     category.to_s
   end
-
 end
