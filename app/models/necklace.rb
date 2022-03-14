@@ -1,6 +1,8 @@
 class Necklace < ApplicationRecord
   # Direct associations
 
+  belongs_to :category
+
   has_many   :bookmarks,
              :dependent => :destroy
 
