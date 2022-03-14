@@ -1,27 +1,22 @@
 class NecklacesController < ApplicationController
   before_action :set_necklace, only: %i[show edit update destroy]
 
-  # GET /necklaces
   def index
     @q = Necklace.ransack(params[:q])
     @necklaces = @q.result(distinct: true).includes(:bookmarks,
                                                     :category).page(params[:page]).per(10)
   end
 
-  # GET /necklaces/1
   def show
     @bookmark = Bookmark.new
   end
 
-  # GET /necklaces/new
   def new
     @necklace = Necklace.new
   end
 
-  # GET /necklaces/1/edit
   def edit; end
 
-  # POST /necklaces
   def create
     @necklace = Necklace.new(necklace_params)
 
@@ -37,7 +32,6 @@ class NecklacesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /necklaces/1
   def update
     if @necklace.update(necklace_params)
       redirect_to @necklace, notice: "Necklace was successfully updated."
@@ -46,7 +40,6 @@ class NecklacesController < ApplicationController
     end
   end
 
-  # DELETE /necklaces/1
   def destroy
     @necklace.destroy
     message = "Necklace was successfully deleted."
@@ -59,12 +52,10 @@ class NecklacesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_necklace
     @necklace = Necklace.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def necklace_params
     params.require(:necklace).permit(:category_id, :title, :price, :image)
   end
