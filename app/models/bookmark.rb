@@ -1,6 +1,8 @@
 class Bookmark < ApplicationRecord
   # Direct associations
 
+  belongs_to :necklace
+
   # Indirect associations
 
   # Validations
