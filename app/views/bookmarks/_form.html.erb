@@ -16,7 +16,7 @@
 
     <%= f.label :necklace_id %>
     <!-- Input for necklace_id start -->
-    <%= f.number_field :necklace_id, class: necklace_class, placeholder: "Enter necklace" %>
+    <%= f.collection_select :necklace_id, Necklace.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for necklace_id end -->
     <% if necklace_was_invalid %>
       <% bookmark.errors.full_messages_for(:necklace).each do |message| %>

@@ -7,7 +7,7 @@
     <%= f.label :necklace_id %>
 
     <!-- Input for necklace_id start -->
-    <%= f.text_field :necklace_id, class: "form-control" %>
+    <%= f.collection_select :necklace_id, Necklace.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for necklace_id end -->
   </div>
   <!-- Label and input for necklace_id end -->
