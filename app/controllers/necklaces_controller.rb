@@ -3,7 +3,8 @@ class NecklacesController < ApplicationController
 
   # GET /necklaces
   def index
-    @necklaces = Necklace.page(params[:page]).per(10)
+    @q = Necklace.ransack(params[:q])
+    @necklaces = @q.result(:distinct => true).includes(:bookmarks, :category).page(params[:page]).per(10)
   end
 
   # GET /necklaces/1
