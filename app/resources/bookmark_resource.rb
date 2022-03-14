@@ -7,6 +7,8 @@ class BookmarkResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :necklace
+
   # Indirect associations
 
 end
